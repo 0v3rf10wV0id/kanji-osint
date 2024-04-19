@@ -25,3 +25,5 @@ for message in channel_listener():
             })
         add_domain_to_redis(job['domain'], payload)
         publish_message("dnsx-jobs", payload)
+
+

@@ -11,6 +11,8 @@ RUN go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 RUN go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
 #httpx
 RUN go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+#tlsx
+RUN go install -v github.com/projectdiscovery/tlsx/cmd/tlsx@latest
 
 # Install Python 3 and pip3
 RUN apt-get update && \

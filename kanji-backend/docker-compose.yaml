@@ -47,3 +47,13 @@ services:
     volumes:
       - .:/app
     entrypoint: ["python3","-u","httpx-resolve_job_worker.py"]
+
+  tlsx-resolve-worker:
+    build:
+      context: .
+      dockerfile: enum_worker.Dockerfile
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+    entrypoint: ["python3","-u","tlsx_job_worker.py"]

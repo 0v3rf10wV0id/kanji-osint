@@ -20,4 +20,4 @@ for message in channel_listener():
         job_domain = job['domain']
         job = json.dumps(job)
         add_domain_to_redis(job_domain, job)
-        publish_message("httpx-jobs", job)
+        publish_message("enrich-resolve-jobs", job)
