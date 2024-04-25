@@ -16,7 +16,7 @@ for message in channel_listener():
         job = json.loads(message["data"])
         print(f"[RESOLVE] Resolving domains for {job['domain']} using httpx")
         print(job)
-        resolve_res = run_container(f"httpx -l outputs/{job['dnsx_filename']} -o outputs/{job['domain']}-http-resolved.csv -td -sc -nc -mc 200,302,403 -csv --silent")[:-1]
+        resolve_res = run_container(f"httpx -l outputs/{job['dnsx_filename']} -o outputs/{job['domain']}-http-resolved.csv -td -sc -nc -mc 200,302,403 -ip -csv --silent")[:-1]
         print(f"[DONE] Resolved {len(resolve_res)} domains using httpx. ")
         job = get_domain_data(job['domain'])
         job["httpx_filename"] = job['domain']+"-http-resolved.csv"
