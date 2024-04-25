@@ -1,54 +1,13 @@
-<html>
-    <script>
-        window.addEventListener("DOMContentLoaded", () => {
-                const form = document.getElementById("form");
-                const log = document.getElementById("log");
-                form.addEventListener("submit", logSubmit);
-        })
-        function pollStatus(domain) {
-            const response = fetch(`http://localhost:9000/get-domain-info?domain=${domain}`, {
-                  headers: {
-                    'accept': 'application/json'
-                  }
-            })
-            const pollresponse = response.then(response => response.text()).then(response => {
-                return response
-            })
-            return pollresponse
-            ;}
-
-        function logSubmit(event) {
-            event.preventDefault();
-
-            const response = fetch('http://localhost:9000/sub-enum', {
-                  method: 'POST',
-                  headers: {
-                    'accept': 'application/json',
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify({
-                    'domain': document.getElementById("form").elements[0].value
-                  })
-        });
-          response.then(response => response.text()).then(response => {
-              log.innerHTML = response;
-          });
-          const interval = setInterval(() => {
-              pollStatus(document.getElementById("form").elements[0].value).then(response => {
-                  log.innerHTML = response;
-              });
-
-          }, 1000)
-        }
-
-    </script>
-    <body>
-        <h1>Enter your domain</h1>
-        <form id="form">
-          <label>Domain: <input type="text" /></label>
-          <br /><br />
-          <button type="submit">Submit form</button>
-        </form>
-        <p id="log"></p>
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
